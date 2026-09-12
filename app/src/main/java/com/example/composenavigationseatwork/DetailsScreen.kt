@@ -15,11 +15,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 
 @Composable
-fun DetailsScreen(navController: NavController) {
-
+fun DetailsScreen(
+    studentId: String,
+    studentName: String,
+    studentCourse: String,
+    studentYear: String,
+    onBack: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,16 +42,23 @@ fun DetailsScreen(navController: NavController) {
                 .padding(16.dp)
         ) {
             Column {
-                Text(text = "Student ID: 1001")
-                Text(text = "Name: Caleb Dela Cruz")
-                Text(text = "Course: BS Computer Engineering")
-                Text(text = "Year: 4")
+                Text(text = "Student ID: $studentId")
+                Text(text = "Name: $studentName")
+                Text(text = "Course: $studentCourse")
+                Text(text = "Year: $studentYear")
             }
         }
 
         Button(
-            onClick = { navController.popBackStack() },
+            onClick = { onBack() },
             modifier = Modifier.padding(top = 16.dp)
+        ) {
+            Text(text = "Edit Information")
+        }
+
+        Button(
+            onClick = { onBack() },
+            modifier = Modifier.padding(top = 8.dp)
         ) {
             Text(text = "Back")
         }
